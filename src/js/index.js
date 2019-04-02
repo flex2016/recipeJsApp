@@ -1,5 +1,5 @@
 import Search from './models/Search';
-
+import Recipe from './models/Recipe';
 
 import * as searchView from './views/searchView';
 
@@ -43,13 +43,10 @@ const controlSearch = async () => {
   }
 }
 
-
 elements.searchForm.addEventListener('submit', e => {
   e.preventDefault();
   controlSearch();
 });
-
-
 
 elements.searchResPages.addEventListener('click', e => {
   const btn = e.target.closest('.btn-inline');
@@ -59,3 +56,8 @@ elements.searchResPages.addEventListener('click', e => {
       searchView.renderResults(state.search.result, goToPage);
   }
 });
+
+
+/**
+ * RECIPE CONTROLLER
+ */
