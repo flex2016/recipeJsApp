@@ -5,6 +5,7 @@ import Likes from './models/Likes';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
 import * as listView from './views/listView';
+import * as likesView from './views/likesView';
 
 import { elements, renderLoader, clearLoader } from './views/base';
 
@@ -93,7 +94,8 @@ const controlRecipe = async () => {
           // Render recipe
           clearLoader();
             recipeView.renderRecipe(
-                state.recipe
+                state.recipe,
+                state.likes.isLiked(id)
             )
 
 
@@ -157,7 +159,7 @@ const controlLike = () => {
           state.recipe.img
       );
       // Toggle the like button
-
+      likesView.toggleLikeBtn(true);
 
       // Add like to UI list
       likesView.renderLike(newLike);
@@ -168,12 +170,12 @@ const controlLike = () => {
       state.likes.deleteLike(currentID);
 
       // Toggle the like button
-
+      likesView.toggleLikeBtn(false);
 
       // Remove like from UI list
-
+      likesView.deleteLike(currentID);
   }
-
+  likesView.toggleLikeMenu(state.likes.getNumLikes());
 };
 
 
